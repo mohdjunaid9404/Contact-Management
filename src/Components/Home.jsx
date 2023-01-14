@@ -15,18 +15,31 @@ const Home = () => {
             }
         }
         getData();
+        
     }, []);
+
+    const handleDelete = async (id) => {
+        try{
+            await axios.delete("http://localhost:4000/delete/"+ id);
+            window.location.reload()
+        }catch(err){
+            console.log(err);
+        }      
+        alert("successfully deleted")
+    }
 
     return (
         <div>
             <h1 className="heading">All contact number</h1>
-            <div className='asad'>
+            <div className='contact'>
 
                 {lead.map(items => (
-                    <div className='junaid' key={items.id}>
+                    <div className='contacts' key={items.id}>
                         <h2>{items.name}</h2>
                         <span>{items.mobile_number}</span>
                         <p>{items.country}</p>
+                        <button className='button' onClick={()=>handleDelete(items.id)}>Delete</button>
+                        <button className='button' >Update</button>
                     </div>
                 ))}<br />
             </div>

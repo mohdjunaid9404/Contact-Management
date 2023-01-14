@@ -52,11 +52,11 @@ input{
     padding: 7px;
 } 
 
-.junaid{
+.contacts{
     display: flex;
     flex-direction: column;
 }
-.asad{
+.contact{
     flex: 3;
     display: flex;
     flex-direction: row;

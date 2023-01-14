@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const mysql = require('mysql');
 const cors = require('cors');
+const { query } = require('express');
 const port = 4000;
 
 const db = mysql.createConnection({
@@ -43,6 +44,17 @@ app.post("/insert", (req,res)=>{
     })
 })
 
+app.delete("/delete/:id", (req,res)=>{
+    const id = req.params.id;
+    const q = "delete from add_contact where id = ?"
+    db.query(q, [id], (err, data)=>{
+        if(err) throw err;
+        res.json({
+            status: 200,
+            massege: "deleted successfully"
+        });
+    })
+});
 app.listen(port, ()=>{
     console.log("server is running on 4000");
 });
